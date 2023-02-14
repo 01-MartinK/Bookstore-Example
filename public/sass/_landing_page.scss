@@ -3,14 +3,30 @@
     width: 100%;
 
     .main_book {
-        background-color: red;
         width: 100%;
         padding: 3em;
+
+        h3 {
+            margin-top: 1em;
+        }
     }
 
     .extra_books {
-        background-color: blue;
         width: 100%;
         padding: 3em;
+        .book_grid {
+            display: grid;
+            gap: 1em;
+            grid-template-columns: auto auto auto;
+        }
+    }
+
+     .img {
+        width: 12em;
+        object-fit: cover;
+    }
+
+    .img_big {
+        width: 24em;
     }
 }

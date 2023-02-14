@@ -14,6 +14,10 @@ app.get('/', (req, res) => {
     res.render('_main')
 })
 
+app.get('/book/:bookname', (req, res) => {
+    res.render('_info')
+})
+
 const server = app.listen(PORT, () => {
     console.log(`Server running at localhost:${PORT}`);
 })
