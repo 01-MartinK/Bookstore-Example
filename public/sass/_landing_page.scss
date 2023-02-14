@@ -1,0 +1,16 @@
+.splitter {
+    display: flex;
+    width: 100%;
+
+    .main_book {
+        background-color: red;
+        width: 100%;
+        padding: 3em;
+    }
+
+    .extra_books {
+        background-color: blue;
+        width: 100%;
+        padding: 3em;
+    }
+}

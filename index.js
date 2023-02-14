@@ -8,9 +8,10 @@ const PORT = 3001
 
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, '/views'));
+app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    res.render('template')
+    res.render('_main')
 })
 
 const server = app.listen(PORT, () => {
