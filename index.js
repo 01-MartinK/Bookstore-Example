@@ -15,7 +15,6 @@ app.get('/', async (req, res) => {
     try {
         const raamat = await sequelize.query('SELECT * FROM raamat', { type: sequelize.QueryTypes.SELECT });
         console.log(raamat)
-        console.log("test3")
         res.render('_main')
 
     } catch (error) {
