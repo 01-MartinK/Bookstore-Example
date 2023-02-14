@@ -9,13 +9,14 @@ const PORT = 3001
 
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, '/views'));
+app.use(express.static('public'))
 
 app.get('/', async (req, res) => {
     try {
         const raamat = await sequelize.query('SELECT * FROM raamat', { type: sequelize.QueryTypes.SELECT });
         console.log(raamat)
         console.log("test3")
-        res.render('template')
+        res.render('_main')
 
     } catch (error) {
         console.error(error);
