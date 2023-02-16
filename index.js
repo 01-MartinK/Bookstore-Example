@@ -3,8 +3,6 @@ const app = express()
 const cors = require('cors')
 const path = require('path');
 const sequelize = require('./database');
-const bodyParser = require('body-parser')
-const pug = require('pug')
 const PORT = 3001
 
 app.set('view engine', 'pug')
@@ -25,6 +23,10 @@ app.get('/', async (req, res) => {
 
 app.get('/book/:bookname', (req, res) => {
     res.render('_info')
+})
+
+app.get('/bookshelf', (req, res) => {
+    res.render('_bookshelf')
 })
 
 const server = app.listen(PORT, () => {

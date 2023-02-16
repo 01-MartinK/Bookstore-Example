@@ -1,0 +1,30 @@
+.splitter {
+    .main_book img {
+        box-shadow: 0px 0px 12px gray;
+        border-radius: 8px;
+    }
+
+    .book_info {
+        padding: 2em;
+    }
+
+    .button_group {
+        margin-top: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+        button {
+            width: 16em;
+            height: 4em;
+            border: 1px solid gray;
+            border-radius: 6px;
+            background-color: yellowgreen;
+            //@include transition-ease;
+            &:hover {
+                cursor: pointer;
+                border: 2px solid black;
+            }
+        }
+    }
+}
