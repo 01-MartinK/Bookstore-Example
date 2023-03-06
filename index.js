@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const path = require('path');
-//const sequelize = require('./database');
+const sequelize = require('./database');
+const bodyParser = require('body-parser')
+const pug = require('pug')
 const PORT = 3001
 
 app.set('view engine', 'pug')
@@ -11,9 +13,8 @@ app.use(express.static('public'))
 
 app.get('/', async (req, res) => {
     try {
-        //const raamat = await sequelize.query('SELECT * FROM raamat', { type: sequelize.QueryTypes.SELECT });
-        //console.log(raamat)
-        res.render('_main')
+        const raamat = await sequelize.query('SELECT * FROM raamat', { type: sequelize.QueryTypes.SELECT });
+        res.render('_main', {raamat})
 
     } catch (error) {
         console.error(error);
@@ -21,12 +22,18 @@ app.get('/', async (req, res) => {
     }
 })
 
-app.get('/book/:bookname', (req, res) => {
-    res.render('_info')
+app.get('/book/:id', async (req, res) => {
+    const andmed = await sequelize.query('SELECT * FROM raamat where raamatu_id = :id', { replacements: {id: req.params.id},type: sequelize.QueryTypes.SELECT });
+    console.log(andmed)
+    const sendable = andmed[0]
+    res.render('_info', {sendable});
 })
 
-app.get('/book/:bookname/read', (req, res) => {
-    res.render('_book_read')
+app.get('/book/:id/read', async (req, res) => {
+    const andmed = await sequelize.query('SELECT * FROM raamat where raamatu_id = :id', { replacements: {id: req.params.id},type: sequelize.QueryTypes.SELECT });
+    //lisada check kas inimesel on see raamat ostetud
+    const sendable = andmed[0]
+    res.render('_book_read', {sendable})
 })
 
 app.get('/bookshelf', (req, res) => {

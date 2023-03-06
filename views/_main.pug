@@ -2,7 +2,6 @@ include template
 block content 
     include components/navbar
     include components/navbarSecond
-
     .splitter
         .main_book
             h3 Current Most Popular Books
@@ -10,7 +9,8 @@ block content
         .extra_books
             h3 Current popular
             .book_grid
-                img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg").img
-                img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg").img
-                img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg").img
-                img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg").img
+                - var n = 0;
+                while n < 9
+                    each indraamat in raamat
+                        img(src=indraamat.pilt)
+                    li= n++
