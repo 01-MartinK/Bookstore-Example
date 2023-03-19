@@ -22,6 +22,10 @@ app.get('/', async (req, res) => {
     }
 })
 
+app.get('/profile/:id', async (req, res) => {
+    res.render('_account');
+})
+
 app.get('/book/:id', async (req, res) => {
     const andmed = await sequelize.query('SELECT * FROM raamat where raamatu_id = :id', { replacements: {id: req.params.id},type: sequelize.QueryTypes.SELECT });
     console.log(andmed)
@@ -33,8 +37,6 @@ app.get('/filter', (req, res) => {
     res.render('_booksearch')
 })
 
-app.get('/book/:bookname/read', (req, res) => {
-    res.render('_book_read')
 app.get('/book/:id/read', async (req, res) => {
     const andmed = await sequelize.query('SELECT * FROM raamat where raamatu_id = :id', { replacements: {id: req.params.id},type: sequelize.QueryTypes.SELECT });
     //lisada check kas inimesel on see raamat ostetud
@@ -52,4 +54,4 @@ app.get('/administrator', (req, res) => {
 
 const server = app.listen(PORT, () => {
     console.log(`Server running at localhost:${PORT}`);
-});
+})
