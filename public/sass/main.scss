@@ -4,6 +4,7 @@
 @import 'book-info';
 @import 'bookshelf';
 @import 'admin';
+@import 'bookfilter';
 
 * {
     padding: 0;
@@ -12,6 +13,7 @@
 
 body {
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    @include transition-ease;
 }
 
 .input_filled_form {

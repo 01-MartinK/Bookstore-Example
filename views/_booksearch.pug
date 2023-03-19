@@ -1,0 +1,85 @@
+include template
+block content 
+    include components/navbar
+    include components/navbarSecond
+    
+    .cont
+        .splitter
+            div
+                form.searchBar
+                    img(src="./images/search_filled.svg").searchIcon
+                    input(type="text" for="search" placeholder="")
+                    button.btnSearch Search
+                .filtersBar
+                    form(action="/action_page.php")
+                        h3 Filters
+                        br
+                        label Price
+                        br
+                        input(type="radio" value="1-5" name="price")
+                        label  1€ - 5€
+                        br
+                        input(type="radio" value="5-10" name="price")
+                        label  5€ - 10€
+                        br
+                        input(type="radio" value="10-20" name="price")
+                        label  10€ - 20€
+                        br
+                        input(type="radio" value="20-30" name="price")
+                        label  20€ - 30€
+                        br
+                        input(type="radio" value="30" name="price")
+                        label  30€+
+                        br
+                        br
+                        label Has
+                        br
+                        input(type="radio" value="false" name="stocked")
+                        label  In Stock 
+                        br
+                        input(type="radio" value="true" name="stocked")
+                        label  None In Stock
+                        br
+                        br
+                        label Category
+                        br
+                        input(type="radio" value="fiction" name="category")
+                        label  Fiction
+                        br
+                        input(type="radio" value="horror" name="category")
+                        label  Horror
+                        br
+                        input(type="radio" value="truestory" name="category")
+                        label  True Story
+                        br
+                        input(type="radio" value="fantasy" name="category")
+                        label  Fantasy
+                        br
+                        input(type="radio" value="romance" name="category")
+                        label  Romance
+                        br
+                        input(type="radio" value="science" name="category")
+                        label  Science
+                        br
+                        br
+                        input(type="button" name="submit" value="SUBMIT").btn
+            div
+                .bookgrid
+                    .book
+                        a
+                            img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg")
+                    .book
+                        a
+                            img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg")
+                    .book
+                        a
+                            img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg")
+                    .book
+                        a
+                            img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg")
+                    .book
+                        a
+                            img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg")
+                    .book
+                        a
+                            img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg")

@@ -1,0 +1,62 @@
+.cont {
+
+    .bookgrid {
+        display: grid;
+        gap: 1.5em;
+        grid-template-columns: repeat(4, 1fr);
+        .book {
+            width: 14em;
+            height: 23em;
+            img {
+                width: 14em;
+                height: 23em;
+            }
+        }
+    }
+
+    .splitter {
+        gap: 2em
+    }
+
+    .filtersBar {
+        background-color: #f09d51;
+        border-radius: 6px;
+        height: auto;
+        padding: 1em;
+        form {
+            input {
+                margin:0.5em 0;
+            }
+        }
+    }
+
+    .searchBar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        input {
+            width: 21em;
+            padding: 0.45em;
+            padding-left: 2em;
+            border: 2px solid gray;
+            border-radius: 8px;
+        }
+        .searchIcon {
+            width: 1.5em;
+            color: gray;
+            transform: translateX(28px);
+        }
+        .btnSearch {
+            width: 6em;
+            padding: 0.5em;
+            margin: 1em;
+            border: none;
+            box-shadow: 0px 0px 3px gray;
+            border-radius: 4px;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

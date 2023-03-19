@@ -25,6 +25,10 @@ app.get('/book/:bookname', (req, res) => {
     res.render('_info')
 })
 
+app.get('/filter', (req, res) => {
+    res.render('_booksearch')
+})
+
 app.get('/book/:bookname/read', (req, res) => {
     res.render('_book_read')
 })

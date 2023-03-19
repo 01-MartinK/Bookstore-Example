@@ -1,3 +1,14 @@
+const bookInfo = () => {
+    return (
+        <button class="BookBtn">
+            <p class="bookName">Test</p>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+        </button>
+    )
+}
+
 function openEditBook() {
     console.log("test");
     const editMenu = document.querySelector('.editMenu');

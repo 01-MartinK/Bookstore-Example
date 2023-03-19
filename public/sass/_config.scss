@@ -1,4 +1,8 @@
 
+@mixin trans-ease($time) {
+    transition: all $time ease-in-out;
+}
+
 @mixin transition-ease {
     transition: all 0.25s ease-in-out;
 }

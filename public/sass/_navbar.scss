@@ -4,6 +4,12 @@
     padding: 1em 0 ;
     background-color: #F09D51;
     
+    .searchIcon {
+        position: absolute;
+        width: 1.5em;
+        transform: translate(4px, 3px);
+    }
+
     .splitter {
         display: flex;
         align-items: center;
@@ -16,6 +22,10 @@
         
         h3 {
             margin-left: 2em;
+            a {
+                text-decoration: none;
+                color: black;
+            }
         }
 
         ul {
@@ -44,8 +54,9 @@
 
     .searchBar input {
         width: 32em;
-        height: 2.4em;
-        border-radius: 12px;
+        padding: 0.55em;
+        padding-left: 2.5em;
+        border-radius: 8px;
         border: 0;
     }
 }
