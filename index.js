@@ -6,6 +6,7 @@ const sequelize = require('./database');
 const bodyParser = require('body-parser')
 const pug = require('pug')
 const PORT = 3001
+const querystring = require('node:querystring');
 
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, '/views'));
@@ -34,7 +35,19 @@ app.get('/book/:id', async (req, res) => {
 })
 
 app.get('/filter', (req, res) => {
-    res.render('_booksearch')
+    let tag = req.query.tag
+    let price = req.query.price
+    let stock = req.query.stock
+    let name = req.query.name
+    res.render('_filter')
+})
+
+app.get('/events', (req, res) => {
+    res.render('_events')
+})
+
+app.get('/ebooks', (req, res) => {
+    res.render('_ebooks')
 })
 
 app.get('/book/:id/read', async (req, res) => {

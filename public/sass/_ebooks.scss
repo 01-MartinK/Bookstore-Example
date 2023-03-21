@@ -1,0 +1,19 @@
+.ebooks {
+    display: flex;
+    width: 100%;
+    .main_book {
+        display: flex;
+        gap: 1em;
+        width: 100%;
+        img {
+            width: 16em;
+            height: 25em;
+        }
+    }
+    .book_row {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+    }
+}
