@@ -1,0 +1,114 @@
+.cont {
+    padding: 3em;
+    .bookGrid {
+        margin-top: 2em;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5em;
+        .addBookBtn {
+            display: flex;
+            align-items: center;
+            padding: 1em;
+            gap: 5em;
+            font-weight: bold;
+            justify-content: center;
+            border: none;
+            width: 100%;
+            height: 4em;
+            text-align: left;
+            //@include transition-ease;
+            &:hover {
+                cursor: pointer;
+                border: none;
+                border-radius: 4px;
+            }
+        }
+
+        .BookBtn {
+            display: flex;
+            align-items: center;
+            padding: 1em;
+            gap: 5em;
+            border: none;
+            width: 100%;
+            height: 4em;
+            text-align: left;
+            //@include transition-ease;
+            &:hover {
+                transform: translateX(16px);
+                cursor: pointer;
+                border: none;
+                border-left: 3px solid black;
+                border-radius: 4px;
+            }
+
+            p {
+                width: 4em;
+            }
+
+            .bookName {
+                font-weight: 400;
+                font-size: medium;
+            }
+        }
+    }
+}
+
+.middle_card {
+    display: flex;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    .addMenu {
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+        width: 25%;
+        border-radius: 8px;
+        background-color: #F09D51;
+        //box-shadow: 0px 0px 8px black;
+        border: 1px solid black;
+        form {
+            padding: 0.5em 0;
+            gap: 1em;
+            display: flex;
+            flex-direction: column;
+            .buttonGroup {
+                display: flex;
+                gap: 2em;
+            }
+        }
+    }
+    
+    .editMenu { 
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+        width: 25%;
+        border-radius: 8px;
+        background-color: #F09D51;
+        //box-shadow: 0px 0px 8px black;
+        border: 1px solid black;
+
+        h3 {
+            margin-bottom: 2em;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 2em;
+            .buttonGroup {
+                display: flex;
+                gap: 2em;
+            }
+        }
+    }
+}
+
+.none {
+    display: none !important;
+}

@@ -1,16 +1,24 @@
 include template
-block content 
+block content
     include components/navbar
     include components/navbarSecond
-
     .splitter
         .main_book
             h3 Current Most Popular Books
-            img(src="https://cdn11.bigcommerce.com/s-t11n7yugwk/images/stencil/1280x1280/products/142/3728/TheClearQuran_GoldFoil_front__45005.1527014350.jpg?c=2").img_big
+            a(href="/book/101")
+                img(src="https://cdn11.bigcommerce.com/s-t11n7yugwk/images/stencil/1280x1280/products/142/3728/TheClearQuran_GoldFoil_front__45005.1527014350.jpg?c=2").img_big
         .extra_books
             h3 Current popular
-            .book_grid
-                img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg").img
-                img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg").img
-                img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg").img
-                img(src="https://edit.org/photos/images/cat/book-covers-big-2019101610.jpg-1300.jpg").img
+            .book_grid(style='display: flex; flex-wrap: wrap')
+                each raamat in raamatList
+                    .book
+                        a(href=`/book/${raamat.raamatu_id}`, onclick=`console.log('Clicked on image: ${raamat.raamatu_id}')`)
+                            img(src=`${raamat.pilt}`, class="book-image", style='flex-basis: 33.33%')
+        
+    .style_books
+        h3 You may also be interested in
+        .style_book_grid
+            each raamat in extraRaamatud
+                .book
+                    a(href=`/book/${raamat.raamatu_id}`, onclick=`console.log('Clicked on image: ${raamat.raamatu_id}')`)
+                        img(src=`${raamat.pilt}`, class="book-image", style='flex-basis: 33.33%')

@@ -6,8 +6,17 @@ block content
     .divider
 
     .buffer 
+        h3 New Books
     .books
-        div.book
+        each raamat in raamatList
+            .book
+                a(href=`/book/${raamat.raamatu_id}`, onclick=`console.log('Clicked on image: ${raamat.raamatu_id}')`)
+                    img(src=`${raamat.pilt}`, class="book-image", style='flex-basis: 33.33%')
     .buffer
+        h3 Popular Books
     .books
-        div.book
+        each raamat in raamatList
+            .book
+                a(href=`/book/${raamat.raamatu_id}`, onclick=`console.log('Clicked on image: ${raamat.raamatu_id}')`)
+                    img(src=`${raamat.pilt}`, class="book-image", style='flex-basis: 33.33%')
+    .buffer

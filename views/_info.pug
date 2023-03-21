@@ -1,19 +1,20 @@
 include template
-block content 
+block content
     include components/navbar
     include components/navbarSecond
 
-    .splitter 
-        .main_book 
-            img(src="https://cdn11.bigcommerce.com/s-t11n7yugwk/images/stencil/1280x1280/products/142/3728/TheClearQuran_GoldFoil_front__45005.1527014350.jpg?c=2").img_big
+    .splitter
+        .main_book
+            img(src=sendable.pilt)
         .book_info
-            h2 Funny book
-            p "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-            .button_group 
-                button 
-                    b Osta 
-                button 
-                    b Telli 
-                button 
+            h2=sendable.raamatu_pealkiri
+            p=sendable.autor
+            br
+            p=sendable.raamatu_kirjeldus
+            .button_group
+                button
+                    b Osta
+                button
+                    b Telli
+                button
                     b Loe
-

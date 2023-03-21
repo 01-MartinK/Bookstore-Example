@@ -3,15 +3,37 @@
 }
 
 .buffer {
-    height: 12em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8em;
     background-color: #F09D51;
-    z-index: 1  ;
+    z-index: 1;
 }
 
 .books {
+    display: flex;
+    gap: 1em;
+    padding: 0 5em;
     height: 24em;
 }
 
 .book {
-    
+    img {
+        width: 15em;
+        height: 24em;
+        box-shadow: 0px 0px 4px black;
+        @include transition-ease;
+        &:hover {
+            cursor: pointer;
+            transform: scale(1.2);
+            border-radius: 4px;
+            box-shadow: 0px 0px 8px black;
+        }
+    }
+
+    a {
+        width: 15em;
+        height: 24em;
+    }
 }

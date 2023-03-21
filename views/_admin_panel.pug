@@ -1,0 +1,40 @@
+include template
+block content
+    .cont
+        h2 Books
+        .bookGrid
+            each raamat in raamatList
+                button.BookBtn
+                    p.bookName=raamat.raamatu_pealkiri
+                    p=raamat.autor
+                    p=raamat.hind
+                    p=raamat.valjalaskeaasta
+            button.addBookBtn +
+
+    .middle_card.none
+        .addMenu.none
+            h3 Add Book
+            form
+                input(placeholder="Book Name").input_form
+                label Book Description
+                textarea(name="Book Description", cols="30", rows="10") 
+                input(placeholder="Book Price").input_form
+                input(placeholder="Book Availability").input_form
+                input(placeholder="Tags").input_form
+                .buttonGroup
+                    button.btn Add
+                    button.btn Cancel
+        .editMenu.none
+            h3 Edit Book
+            form
+                input(placeholder="Book Name").input_filled_form
+                input(placeholder="Book Description").input_filled_form
+                input(placeholder="Book Price").input_filled_form
+                input(placeholder="Book Availability").input_filled_form
+                input(placeholder="Tags").input_filled_form
+                .buttonGroup
+                    button.btn Save
+                    button.btn Delete
+                    button.btn Cancel
+    
+    script(src="/js/administration.js")
