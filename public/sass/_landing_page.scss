@@ -43,11 +43,30 @@
 
     .img_big {
         width: 32em;
-        @include trans-ease(6s);
+        @include trans-ease(0.5s);
         &:hover {
             body & {
-                transform: rotate(1240deg) scale(1.5);
+                transform: scale(1.2);
             }
         }
+    }
+}
+
+.style_books {
+    h3 {
+        border-top: 3px solid black;
+        border-bottom: 3px solid black;
+        padding: 1em;
+        text-align: center;
+        background-color: #f09d51;
+        margin-bottom: 1em;
+    }
+
+    .style_book_grid {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        gap: 2em;
+        grid-template-columns: auto auto auto auto auto;
     }
 }

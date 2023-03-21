@@ -3,16 +3,18 @@ block content
     include components/navbar
     include components/navbarSecond
 
-.splitter
-    .main_book
-        img(src=sendable.pilt)
-    .book_info
-        h2=sendable.raamatu_pealkiri
-        p=sendable.raamatu_kirjeldus
-        .button_group
-            button
-                b Osta
-            button
-                b Telli
-            button
-                b Loe
+    .splitter
+        .main_book
+            img(src=sendable.pilt)
+        .book_info
+            h2=sendable.raamatu_pealkiri
+            p=sendable.autor
+            br
+            p=sendable.raamatu_kirjeldus
+            .button_group
+                button
+                    b Osta
+                button
+                    b Telli
+                button
+                    b Loe

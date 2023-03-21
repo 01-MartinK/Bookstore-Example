@@ -11,5 +11,14 @@ block content
             h3 Current popular
             .book_grid(style='display: flex; flex-wrap: wrap')
                 each raamat in raamatList
+                    .book
+                        a(href=`/book/${raamat.raamatu_id}`, onclick=`console.log('Clicked on image: ${raamat.raamatu_id}')`)
+                            img(src=`${raamat.pilt}`, class="book-image", style='flex-basis: 33.33%')
+        
+    .style_books
+        h3 You may also be interested in
+        .style_book_grid
+            each raamat in extraRaamatud
+                .book
                     a(href=`/book/${raamat.raamatu_id}`, onclick=`console.log('Clicked on image: ${raamat.raamatu_id}')`)
                         img(src=`${raamat.pilt}`, class="book-image", style='flex-basis: 33.33%')

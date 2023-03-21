@@ -14,8 +14,9 @@ app.use(express.static('public'))
 
 app.get('/', async (req, res) => {
     try {
-        const raamatList = await sequelize.query('SELECT * FROM raamat', { type: sequelize.QueryTypes.SELECT });
-        res.render('_main', { raamatList });
+        const raamatList = await sequelize.query('SELECT * FROM raamat LIMIT 6', { type: sequelize.QueryTypes.SELECT });
+        const extraRaamatud = await sequelize.query('SELECT * FROM raamat LIMIT 10', { type: sequelize.QueryTypes.SELECT });
+        res.render('_main', { raamatList, extraRaamatud });
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while trying to select * from hotell' });
@@ -28,6 +29,7 @@ app.get('/profile/:id', async (req, res) => {
 })
 
 app.get('/book/:raamatu_id', async (req, res) => {
+    console.log(req.params);
     try {
         const andmed = await sequelize.query('SELECT * FROM raamat WHERE raamatu_id = :id', { replacements: {id: req.params.raamatu_id}, type: sequelize.QueryTypes.SELECT });
         const sendable = andmed[0]
@@ -38,9 +40,6 @@ app.get('/book/:raamatu_id', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while trying to retrieve book data' });
     }
 })
-
-
-
 
 app.get('/filter', (req, res) => {
     let tag = req.query.tag
@@ -54,8 +53,14 @@ app.get('/events', (req, res) => {
     res.render('_events')
 })
 
-app.get('/ebooks', (req, res) => {
-    res.render('_ebooks')
+app.get('/ebooks', async (req, res) => {
+    try {
+        const raamatList = await sequelize.query('SELECT * FROM raamat LIMIT 3', { type: sequelize.QueryTypes.SELECT });
+        res.render('_ebooks', { raamatList })
+    }catch(err) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while trying to select * from hotell' });
+    }
 })
 
 app.get('/book/:id/read', async (req, res) => {
@@ -65,8 +70,15 @@ app.get('/book/:id/read', async (req, res) => {
     res.render('_book_read', {sendable})
 })
 
-app.get('/bookshelf', (req, res) => {
-    res.render('_bookshelf')
+app.get('/bookshelf', async (req, res) => {
+    try {
+        const raamatList = await sequelize.query('SELECT * FROM raamat LIMIT 6', { type: sequelize.QueryTypes.SELECT });
+        res.render('_bookshelf', { raamatList })
+    }catch(err) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while trying to select * from hotell' });
+    }
+    
 })
 
 app.get('/administrator', (req, res) => {
