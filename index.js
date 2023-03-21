@@ -81,8 +81,23 @@ app.get('/bookshelf', async (req, res) => {
     
 })
 
-app.get('/administrator', (req, res) => {
-    res.render('_admin_panel')
+app.get('/administrator', async (req, res) => {
+    try {
+        const raamatList = await sequelize.query('SELECT * FROM raamat', { type: sequelize.QueryTypes.SELECT });
+        res.render('_admin_panel', { raamatList })
+    }catch(err) {
+        console.error(error);
+        res.status(500).json({ error: 'An error occurred while trying to select * from hotell' });
+    }
+    
+})
+
+app.post('/admin/books/add_book', (req, res) => {
+
+})
+
+app.delete('/admin/books/:id', (req, res) => {
+
 })
 
 const server = app.listen(PORT, () => {

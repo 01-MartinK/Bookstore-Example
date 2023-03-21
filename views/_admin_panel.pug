@@ -3,11 +3,12 @@ block content
     .cont
         h2 Books
         .bookGrid
-            button.BookBtn
-                p.bookName test 
-                p test
-                p test
-                p test
+            each raamat in raamatList
+                button.BookBtn
+                    p.bookName=raamat.raamatu_pealkiri
+                    p=raamat.autor
+                    p=raamat.hind
+                    p=raamat.valjalaskeaasta
             button.addBookBtn +
 
     .middle_card.none
