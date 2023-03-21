@@ -1,5 +1,5 @@
 include template
-block content 
+block content
     include components/navbar
     include components/navbarSecond
     .splitter
@@ -9,9 +9,7 @@ block content
                 img(src="https://cdn11.bigcommerce.com/s-t11n7yugwk/images/stencil/1280x1280/products/142/3728/TheClearQuran_GoldFoil_front__45005.1527014350.jpg?c=2").img_big
         .extra_books
             h3 Current popular
-            .book_grid
-                - var n = 0;
-                while n < 9
-                    each indraamat in raamat
-                        img(src=indraamat.pilt)
-                    li= n++
+            .book_grid(style='display: flex; flex-wrap: wrap')
+                each raamat in raamatList
+                    a(href=`/book/${raamat.raamatu_id}`, onclick=`console.log('Clicked on image: ${raamat.raamatu_id}')`)
+                        img(src=`${raamat.pilt}`, class="book-image", style='flex-basis: 33.33%')
