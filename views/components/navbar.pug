@@ -1,5 +1,6 @@
 div.navbar
     include ./login
+    include ./register
     .splitter
         ul.left
             h3 
@@ -16,5 +17,7 @@ div.navbar
                 input
             li 
                 a#signInBtn Sign In
+                a#profileBtn(href="profile/test") Profile
+                a#logoutBtn Logout
     
     script(src="./js/login.js")

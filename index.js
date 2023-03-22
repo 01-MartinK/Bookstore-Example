@@ -105,33 +105,41 @@ const jwt = require("jsonwebtoken");
 
 app.put('/login', async (req, res) => {
 
-    const name = "kevin";
-    const password = "qwerty";
-
-    console.log(req.body)
-    console.log(name + ": " + password);
-
-    if(req.body.name === name && req.body.password === password){
-        const token = jwt.sign(
-            {user: "kevin"},
-            "Big Boob Goth",
-            {
-                expiresIn: "2h",
-            }
-        )
-
-        console.log(req.body);
-        let data = {token, valid: true}
-        res.status(200).send(data)    
-    } else {
-        res.status(200).send({err: "Error"})
+    try {
+        const users = await sequelize.query('SELECT * FROM kasutaja WHERE nimi = :nimi && password = :password', { replacements: {nimi: req.body.name, password: req.body.password}, type: sequelize.QueryTypes.SELECT})
+        if (users.length == 1) {
+            const token = jwt.sign(
+                {user: users[0].nimi},
+                "Big Boob Goth",
+                {
+                    expiresIn: "2h",
+                }
+            )
+    
+            console.log(req.body);
+            let data = {token, valid: true}
+            res.status(200).send(data)    
+        } else {
+            res.status(200).send({err: "Error"})
+        }    
+        
+    } catch(err) {
+        res.status(500).send({err})
     }
+
+        
 })
 
 app.patch('/login/check', (req, res) => {
     console.log(req.body);
-    let data = {test: "template shit"}
-    res.status(200).send(data)
+    let user = jwt.decode(req.body.token, {secret: "Big Boob Goth"})
+    if (user) {
+        let data = {valid: true, logged: true}
+        res.status(200).send(data)
+    } else {
+        let data = {valid: true, logged: false}
+        res.status(200).send(data)
+    }
 })
 
 app.post('/register', async (req, res) => {
