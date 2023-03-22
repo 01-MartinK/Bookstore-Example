@@ -8,6 +8,13 @@ document.querySelector('.loginBox').children[1].addEventListener('submit', submi
 document.querySelector('.registerBox').children[1].addEventListener('submit', submitRegister)
 document.querySelector('#logoutBtn').addEventListener('click', submitLogout)
 
+let user_id_for_profile = 0;
+
+document.querySelector('#profileBtn').addEventListener('click', () => {
+    console.log(user_id_for_profile)
+    window.location = `/profile/${user_id_for_profile}`
+})
+
 // check if logged in or not
 const loginStatus = async () => {
     let signInBtn = document.querySelector('#signInBtn');
@@ -23,6 +30,7 @@ const loginStatus = async () => {
         .then((res) => {
             console.log(res.data)
             if (res.data.logged) {
+                user_id_for_profile = res.data.user.user
                 signInBtn.style.display = 'none'
                 profileBtn.style.display = 'inline'
                 logoutBtn.style.display = 'inline'

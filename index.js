@@ -11,6 +11,8 @@ app.set('views', path.join(__dirname, '/views'));
 app.use(express.static('public'))
 app.use(bodyParser.json())
 
+let currentUser = false
+
 app.get('/', async (req, res) => {
     try {
         const raamatList = await sequelize.query('SELECT * FROM raamat LIMIT 6', { type: sequelize.QueryTypes.SELECT });
@@ -22,9 +24,26 @@ app.get('/', async (req, res) => {
     }
 });
 
+app.get('/profile', (req, res) => {
+    res.render('_error')
+})
 
 app.get('/profile/:id', async (req, res) => {
-    res.render('_account');
+    try {
+        const users = await sequelize.query('SELECT * FROM kasutaja WHERE kasutaja_id = :id', { replacements: {id: req.params.id}, type: sequelize.QueryTypes.SELECT });
+        if (currentUser) {
+            if (users.length == 1) {
+                let user = users[0]
+                res.render('_account', { user });
+            }
+            else
+                res.render('_error')
+        } else {
+            res.render('_error')
+        }
+    } catch(error) {
+        res.status(500).json({ error: "An error occurred while trying to retrieve book data" });
+    }
 })
 
 app.get('/book/:raamatu_id', async (req, res) => {
@@ -80,12 +99,16 @@ app.get('/bookshelf', async (req, res) => {
 })
 
 app.get('/administrator', async (req, res) => {
-    try {
-        const raamatList = await sequelize.query('SELECT * FROM raamat', { type: sequelize.QueryTypes.SELECT });
-        res.render('_admin_panel', { raamatList })
-    }catch(err) {
-        console.error(error);
-        res.status(500).json({ error: 'An error occurred while trying to select * from hotell' });
+    if (currentUser) {
+        try {
+            const raamatList = await sequelize.query('SELECT * FROM raamat', { type: sequelize.QueryTypes.SELECT });
+            res.render('_admin_panel', { raamatList })
+        }catch(err) {
+            console.error(error);
+            res.status(500).json({ error: 'An error occurred while trying to select * from hotell' });
+        }
+    } else {
+        res.render('_error')
     }
     
 })
@@ -106,7 +129,7 @@ app.put('/login', async (req, res) => {
         const users = await sequelize.query('SELECT * FROM kasutaja WHERE nimi = :nimi && password = :password', { replacements: {nimi: req.body.name, password: req.body.password}, type: sequelize.QueryTypes.SELECT})
         if (users.length == 1) {
             const token = jwt.sign(
-                {user: users[0].nimi},
+                {user: users[0].kasutaja_id},
                 "Big Boob Goth",
                 {
                     expiresIn: "2h",
@@ -123,19 +146,20 @@ app.put('/login', async (req, res) => {
     } catch(err) {
         res.status(500).send({err})
     }
-
-        
 })
 
 app.patch('/login/check', (req, res) => {
     console.log(req.body);
     let user = jwt.decode(req.body.token, {secret: "Big Boob Goth"})
     if (user) {
-        let data = {valid: true, logged: true}
+        let data = {valid: true, logged: true, user: user}
         res.status(200).send(data)
+        currentUser = true
+        setTimeout(() => { currentUser = false }, 30000)
     } else {
         let data = {valid: true, logged: false}
         res.status(200).send(data)
+        currentUser = false
     }
 })
 
@@ -149,7 +173,7 @@ app.post('/register', async (req, res) => {
             console.log(new_user);
             
             const token = jwt.sign(
-                {user: "kevin"},
+                {user: new_user.kasutaja_id},
                 "Big Boob Goth",
                 {
                     expiresIn: "2h",

@@ -1,14 +1,3 @@
-const checklogin = async (cookie) => {
-    if (cookie) {
-        axios.patch('/login/check', {
-            token: cookie
-        })
-        .then((response) => {
-            console.log(response.data)
-        })
-    }
-}
-
 const login = async (name, password) => {
     axios.put('/login', {
         name: name,
