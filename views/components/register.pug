@@ -1,10 +1,17 @@
-script(src="/js/utils.js")
-
-form(method="post")
-    input(type="text" name="username" placeholder="Username" required)
-    input(type="password" name="password" placeholder="Password" required)
-    input(type="email" name="email" placeholder="email" required)
-    input(type="numbers" name="telefon" placeholder="telefon" required)
-    input(type="text" name="aadress" placeholder="aadress")
-    input(type="image" name="pilt" placeholder="pilt")
-    input(type="submit")
+.registerBox
+    h1 Sign Up
+    form
+        input(type="text" name="username" placeholder="Username" required)
+        br
+        input(type="password" name="password" placeholder="Password" required)
+        br
+        input(type="email" name="email" placeholder="email" required)
+        br
+        input(type="numbers" name="telefon" placeholder="telefon" required)
+        br
+        input(type="text" name="aadress" placeholder="aadress")
+        br
+        input(type="submit" value="Register")
+        p.error An error
+        p Already have an account?
+            a#signInButtonLink  Sign in
