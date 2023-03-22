@@ -16,11 +16,13 @@ block content
             h3 Add Book
             form
                 input(placeholder="Book Name").input_form
-                label Book Description
-                textarea(name="Book Description", cols="30", rows="10") 
+                input(placeholder="Book Description")
+                label Book Content
+                textarea(name="Book Description", cols="30", rows="20") 
                 input(placeholder="Book Price").input_form
                 input(placeholder="Book Availability").input_form
                 input(placeholder="Tags").input_form
+                input(placeholder="Picture Link").input_form
                 .buttonGroup
                     button.btn Add
                     button.btn Cancel
