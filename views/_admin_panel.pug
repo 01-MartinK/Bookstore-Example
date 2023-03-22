@@ -9,34 +9,69 @@ block content
                     p=raamat.autor
                     p=raamat.hind
                     p=raamat.valjalaskeaasta
-            button.addBookBtn +
+            button.addBookBtn(id="addbookbtn") +
 
     .middle_card.none
         .addMenu.none
             h3 Add Book
-            form
-                input(placeholder="Book Name").input_form
-                input(placeholder="Book Description")
-                label Book Content
-                textarea(name="Book Description", cols="30", rows="20") 
-                input(placeholder="Book Price").input_form
-                input(placeholder="Book Availability").input_form
-                input(placeholder="Tags").input_form
-                input(placeholder="Picture Link").input_form
+            form(id="add-book-form")
+                input(placeholder="Book Name", name="bookName", required).input_form
+                label Book Description
+                textarea(name="bookDescription", cols="30", rows="10", required)
+                input(placeholder="Autor", name="autor").input_form
+                input(placeholder="Pilt", name="pilt").input_form
+                input(placeholder="Aasta", name="aasta").input_form
+                input(placeholder="Hind", name="hind").input_form
+                input(placeholder="Sisu", name="sisu").input_form
                 .buttonGroup
-                    button.btn Add
-                    button.btn Cancel
+                    button.btn(type="submit") Add
+                    button.btn(type="reset") Cancel
         .editMenu.none
             h3 Edit Book
             form
                 input(placeholder="Book Name").input_filled_form
                 input(placeholder="Book Description").input_filled_form
-                input(placeholder="Book Price").input_filled_form
-                input(placeholder="Book Availability").input_filled_form
-                input(placeholder="Tags").input_filled_form
+                input(placeholder="autor").input_filled_form
+                input(placeholder="pilt").input_filled_form
+                input(placeholder="aasta").input_filled_form
+                input(placeholder="hind").input_filled_form
+                input(placeholder="sisu").input_filled_form
                 .buttonGroup
                     button.btn Save
                     button.btn Delete
                     button.btn Cancel
-    
+
     script(src="/js/administration.js")
+    script.
+        document.getElementById("addbookbtn").addEventListener("click", function() {
+            var popup = document.getElementsByClassName("addMenu")[0];
+            popup.classList.remove("none");
+            var middleCard = document.getElementsByClassName("middle_card")[0];
+            middleCard.classList.remove("none");
+        });
+
+        document.getElementById("add-book-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+            var form = document.getElementById("add-book-form");
+            var formData = new FormData(form);
+
+            fetch("/addbook", {
+            method: "POST",
+                body: formData
+                })
+            .then(response => {
+                if (response.ok) {
+                console.log("Book added successfully.");
+                var popup = document.getElementsByClassName("addMenu")[0];
+                popup.classList.add("none");
+                var middleCard = document.getElementsByClassName("middle_card")[0];
+                middleCard.classList.add("none");
+                } else {
+                console.log("Error adding book.");
+                }
+                })
+            .catch(error => {
+                console.log("Error adding book: " + error);
+                });
+        });

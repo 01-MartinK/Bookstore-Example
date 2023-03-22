@@ -1,8 +1,11 @@
 const express = require('express')
 const app = express()
+const multer = require('multer');
+const upload = multer();
 const path = require('path');
 const sequelize = require('./database');
 const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: true }));
 const pug = require('pug')
 const PORT = 3001
 
@@ -191,6 +194,31 @@ app.post('/register', async (req, res) => {
         res.status(500).json({ error: 'An error occurred while trying to retrieve book data' });
     }
 })
+
+
+
+app.post('/addbook', upload.none(), async (req, res) => {
+    console.log(req.body); // should print the form data
+    try {
+        const raamat = await sequelize.query('INSERT INTO raamat (raamatu_pealkiri, raamatu_sisu, raamatu_kirjeldus, autor, hind, valjalaskeaasta, pilt) VALUES (:raamatu_pealkiri, :raamatu_sisu, :raamatu_kirjeldus, :autor, :hind, :aasta, :pilt)', {
+            replacements: {
+                raamatu_pealkiri: req.body.bookName,
+                raamatu_sisu: req.body.sisu,
+                raamatu_kirjeldus: req.body.bookDescription,
+                autor: req.body.autor,
+                hind: req.body.hind,
+                aasta: req.body.aasta,
+                pilt: req.body.pilt,
+            },
+            type: sequelize.QueryTypes.INSERT
+        });
+        console.log(raamat);
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({ error: 'An error occurred while trying to add a book' });
+    }
+});
+
 
 const server = app.listen(PORT, () => {
     console.log(`Server running at localhost:${PORT}`);
