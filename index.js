@@ -1,16 +1,15 @@
 const express = require('express')
 const app = express()
-const cors = require('cors')
 const path = require('path');
 const sequelize = require('./database');
 const bodyParser = require('body-parser')
 const pug = require('pug')
 const PORT = 3001
-const querystring = require('node:querystring');
 
 app.set('view engine', 'pug')
 app.set('views', path.join(__dirname, '/views'));
 app.use(express.static('public'))
+app.use(bodyParser.json())
 
 app.get('/', async (req, res) => {
     try {
@@ -104,9 +103,13 @@ const jwt = require("jsonwebtoken");
 
 app.put('/login', (req, res) => {
 
-    const isikukood = 50402212726;
+    const name = "kevin";
     const password = "qwerty";
-    if(req.body.isikukood===isikukood && req.body.password===password){
+
+    console.log(req.body)
+    console.log(name + ": " + password);
+
+    if(req.body.name === name && req.body.password === password){
         const token = jwt.sign(
             {user: "kevin"},
             "Big Boob Goth",
@@ -119,7 +122,7 @@ app.put('/login', (req, res) => {
         let data = {token, valid: true}
         res.status(200).send(data)    
     } else {
-        res.status(500).send({err: "fuck u"})
+        res.status(200).send({err: "fuck u"})
     }
 })
 

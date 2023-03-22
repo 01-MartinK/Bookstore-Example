@@ -1,5 +1,5 @@
 div.navbar
-    include ../login
+    include ./login
     .splitter
         ul.left
             h3 
@@ -15,4 +15,6 @@ div.navbar
                 img(src="./images/search_filled.svg").searchIcon
                 input
             li 
-                a(href="/login") Sign In
+                a#signInBtn Sign In
+    
+    script(src="./js/login.js")

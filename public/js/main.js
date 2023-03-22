@@ -9,19 +9,18 @@ const checklogin = async (cookie) => {
     }
 }
 
-const login = async (isikukood, password) => {
+const login = async (name, password) => {
     axios.put('/login', {
-        isikukood: isikukood,
+        name: name,
         password: password
     })
     .then((res) => {
         console.log(res.data)
-        if(res.data.valid)    
-            setCookie(res.data.token)
+        if (!res.data.err) {
+            if(res.data.valid)    
+                setCookie(res.data.token)
+        } else {
+            alert('wrong credentials')
+        }
     })
 }
-
-
-login(55533535, "taetaetat")
-
-//checklogin(getCookie("token"))

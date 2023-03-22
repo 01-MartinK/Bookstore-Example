@@ -1,7 +1,66 @@
 @import 'config';
 
-* {
-    padding: 0;
-    margin: 0;
+.loginBox {
+    position: fixed;
     display: none;
+    flex-direction: column;
+    align-items: center;
+    top: 10%;
+    left: 35%;
+    padding: 1em;
+    width: 30%;
+    height: 32em;
+    text-align: center;
+    background-color: #F09D51;
+    border-radius: 12px;
+    box-shadow: 0px 0px 8px black;
+    .icon {
+        background-size: 2.5em;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 3em;
+        height: 3em;
+        background-color: lightgray;
+        border-radius: 4px 0 0 4px;
+    }
+    .error {
+        display: none;
+        color: red;
+    }
+    .input__holder {
+        display: flex;
+    }
+    h1 {
+        margin-bottom: 2em;
+        font-weight: 500;
+    }
+    input[type="text"], input[type="password"] {
+        width: 22em;
+        padding: 1em;
+        font-size: 0.9em;
+        border: none;
+        border-radius: 0 4px 4px 0;
+    }
+    input[type="submit"] {
+        margin-top: 2em;
+        width: 14em;
+        padding: 1em;
+        background-color: lightgreen;
+        border: none;
+        color: black;
+        font-weight: 500;
+        border-radius: 4px;
+        @include trans-ease(0.1s);
+        &:hover {
+            cursor: pointer;
+            background-color:springgreen;
+            box-shadow: 0px 0px 4px black;
+        }
+    }
+    p {
+        margin-top: 2em;
+        a {
+            color: black;
+        }
+    }
 }

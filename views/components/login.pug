@@ -1,0 +1,18 @@
+.loginBox
+    h1 Sign In
+    form(onsubmit="submitLogin")
+        .input__holder
+            .icon(style="background-image: url('../images/person_icon.svg');")
+            input(type="text" name="username" placeholder="Username" required)
+        br
+        br
+        .input__holder
+            .icon(style="background-image: url('../images/lock_icon.svg');")
+            input(type="password" name="password" placeholder="Password" required)
+        br
+        input(type="submit" value="Login")
+        p.error An error
+        p Don't have an account?
+            a(href="/signup")  Sign up
+    
+    
