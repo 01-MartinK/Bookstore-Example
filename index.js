@@ -77,7 +77,6 @@ app.get('/bookshelf', async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'An error occurred while trying to select * from hotell' });
     }
-    
 })
 
 app.get('/administrator', async (req, res) => {
@@ -101,7 +100,7 @@ app.delete('/admin/books/:id', (req, res) => {
 
 const jwt = require("jsonwebtoken");
 
-app.put('/login', (req, res) => {
+app.put('/login', async (req, res) => {
 
     const name = "kevin";
     const password = "qwerty";
@@ -122,7 +121,7 @@ app.put('/login', (req, res) => {
         let data = {token, valid: true}
         res.status(200).send(data)    
     } else {
-        res.status(200).send({err: "fuck u"})
+        res.status(200).send({err: "Error"})
     }
 })
 
@@ -130,6 +129,35 @@ app.patch('/login/check', (req, res) => {
     console.log(req.body);
     let data = {test: "template shit"}
     res.status(200).send(data)
+})
+
+app.post('/register', async (req, res) => {
+    console.log(req.body);
+
+    try {
+        const users = await sequelize.query('SELECT * FROM kasutaja WHERE nimi = :nimi && password = :password && isikukood = :isikukood', { replacements: {nimi: req.body.name, password: req.body.password, isikukood: req.body.isikukood}, type: sequelize.QueryTypes.SELECT})
+        if (users.length == 0) {
+            const new_user = await sequelize.query('INSERT INTO kasutaja (nimi, email, telefon, aadress, password, image) VALUES (:nimi, :email, :telefon, :aadress, :password, :image)', { replacements: {nimi: req.body.name, email: req.body.email, telefon: req.body.telefon, aadress: req.body.aadress, password: req.body.password, image: req.body.image}, type: sequelize.QueryTypes.INSERT})
+            console.log(new_user);
+            
+            const token = jwt.sign(
+                {user: "kevin"},
+                "Big Boob Goth",
+                {
+                    expiresIn: "2h",
+                }
+            )
+
+            let data = {token, valid: true}
+            res.status(200).send(data)
+        }else {
+            let data = {err: "Account already exists"}
+            res.status(200).send(ˇdata)
+        }
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({ error: 'An error occurred while trying to retrieve book data' });
+    }
 })
 
 const server = app.listen(PORT, () => {
