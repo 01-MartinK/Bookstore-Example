@@ -29,8 +29,10 @@ const registration = async ( name, isikukood, password, email, aadress, telefon)
     .then((res) => {
         console.log(res.data)
         if(!res.data.err) {
-            if(res.data.valid)    
+            if(res.data.valid) {
                 setCookie(res.data.token)
+                window.location.reload();
+            }
         } else {
             alert(res.data.err)
         }

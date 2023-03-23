@@ -170,7 +170,7 @@ app.post('/register', async (req, res) => {
     console.log(req.body);
 
     try {
-        const users = await sequelize.query('SELECT * FROM kasutaja WHERE nimi = :nimi && password = :password && isikukood = :isikukood', { replacements: {nimi: req.body.name, password: req.body.password, isikukood: req.body.isikukood}, type: sequelize.QueryTypes.SELECT})
+        const users = await sequelize.query('SELECT * FROM kasutaja WHERE nimi = :nimi && password = :password', { replacements: {nimi: req.body.name, password: req.body.password}, type: sequelize.QueryTypes.SELECT})
         if (users.length == 0) {
             const new_user = await sequelize.query('INSERT INTO kasutaja (nimi, email, telefon, aadress, password, image) VALUES (:nimi, :email, :telefon, :aadress, :password, :image)', { replacements: {nimi: req.body.name, email: req.body.email, telefon: req.body.telefon, aadress: req.body.aadress, password: req.body.password, image: req.body.image}, type: sequelize.QueryTypes.INSERT})
             console.log(new_user);

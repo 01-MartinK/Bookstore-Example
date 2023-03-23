@@ -84,12 +84,13 @@ function submitLogout(e) {
 // submit register
 function submitRegister(e) {
     e.preventDefault()
-    let name;
-    let email;
-    let telefon;
-    let isikukood;
-    let password;
-    let aadress;
+    let form = document.querySelector('.registerBox').children[1]
+    let name = form.children[0].value;
+    let email = form.children[4].value;
+    let telefon = form.children[6].value;
+    let isikukood = form.children[10].value;
+    let password = form.children[2].value;
+    let aadress = form.children[8].value;
 
     registration(name, isikukood, password, email, aadress, telefon)
 }
